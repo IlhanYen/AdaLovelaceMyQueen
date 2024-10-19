@@ -167,9 +167,9 @@ spin();
 
 var availableQuestions = []
 
-for (let i = 0; i < allQuestions.length();i++){
+for (let i = 0; i < allQuestions.length;i++){
     if (options.includes(allQuestions[i].Type))
-    availableQuestions.concat(allQuestions[i].question)
+    availableQuestions = availableQuestions.concat(allQuestions[i].question)
 }
 
 var question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
@@ -180,7 +180,7 @@ var correctIndex
 
 for (let i = 0;i < allQuestions.length;i++){
     if (allQuestions[i].Question == question){
-        (allAnswers.concat(Answer)).concat(PossibleAnswers)
+        allAnswers = (allAnswers.concat(Answer)).concat(PossibleAnswers)
         correctIndex = allAnswers.indexOf(allQuestions[i].Answer)
         updateAnsweredFlag(filePath, allQuestions[i].Question)
     }
