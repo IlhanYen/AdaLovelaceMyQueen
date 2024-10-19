@@ -57,7 +57,7 @@ function resetUnansweredFlags(filepath) {
 }
 
 
-function updateAnsweredFlag(filePath, n) {
+function updateAnsweredFlag(filePath, questionToUpdate) {
     // Read the JSON file
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -69,14 +69,17 @@ function updateAnsweredFlag(filePath, n) {
             // Parse the JSON data
             const jsonData = JSON.parse(data);
 
-            // Check if n is within the valid range
-            if (n < 0 || n >= jsonData.length) {
-                console.error("Error: Index out of range.");
+            // Find the object that matches the "Question" field
+            const item = jsonData.find(item => item.Question === questionToUpdate);
+
+            // If no matching question is found, return an error message
+            if (!item) {
+                console.error("Error: Question not found.");
                 return;
             }
 
-            // Update the "AnsweredFlag" to true for the n-th item
-            jsonData[n].AnsweredFlag = true;
+            // Update the "AnsweredFlag" to true for the found item
+            item.AnsweredFlag = true;
 
             // Write the updated data back to the JSON file
             fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (err) => {
@@ -84,7 +87,7 @@ function updateAnsweredFlag(filePath, n) {
                     console.error("Error writing to the file:", err);
                     return;
                 }
-                console.log(`Updated item ${n} successfully.`);
+                console.log(`Successfully updated the AnsweredFlag for question: "${questionToUpdate}".`);
             });
         } catch (parseError) {
             console.error("Error parsing JSON:", parseError);
