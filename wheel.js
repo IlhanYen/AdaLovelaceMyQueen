@@ -3,15 +3,16 @@ import '/getQuestions.js'
 var possibleQuestions = readUnanswered(filePath)
 
 
+//declaring possible options    
+var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
 
 for (let i = 0; i < possibleQuestions.length();i++){
-    if ((possibleQuestions[i].Type == "Maths").length() <= 0) { 
-        
+    if ((possibleQuestions[i].Type == options[i]).length() <= 0) { 
+        options.splice(options.indexOf(options[i]),1)
     }
 }
 
-//declaring possible options    
-var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
+
 
 //declaring start angle and the size of the arcs of the circle.
 var startAngle = 0;
