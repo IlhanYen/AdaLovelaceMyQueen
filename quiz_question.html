@@ -1,2 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM Quiz Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        #question, #topic {
+            margin-bottom: 1rem;
+        }
+        #question {
+            font-size: 20px;
+        }
+        #topic {
+            font-size: 18px;
+            color: #666;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .option {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            width: 80%;
+            text-align: left;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #d0d0d0;
+        }
+        .option.selected {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #scoreBanner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STEM Quiz</h1>
+        <div id="topic"></div>
+        <div id="question"></div>
+        <div class="options" id="options"></div>
+        <button onclick="checkAnswer()">Submit Answer</button>
+        <button onclick="nextQuestion()">Next Question</button>
+        <div id="scoreBanner">Score: 0 / 0</div>
+    </div>
 
-  
+    <script>
+        const questions = [
+            {
+                topic: "Math",
+                question: "What is 7 x 8?",
+                options: ["54", "56", "58", "60"],
+                correctAnswer: "56"
+            },
+            {
+                topic: "Math",
+                question: "What is the sum of angles in a triangle?",
+                options: ["90 degrees", "180 degrees", "270 degrees", "360 degrees"],
+                correctAnswer: "180 degrees"
+            },
+            {
+                topic: "Math",
+                question: "What is 25% of 80?",
+                options: ["15", "20", "25", "30"],
+                correctAnswer: "20"
+            },
+            {
+                topic: "Science",
+                question: "What is the closest planet to the Sun?",
+                options: ["Venus", "Earth", "Mercury", "Mars"],
+                correctAnswer: "Mercury"
+            },
+            {
+                topic: "Science",
+                question: "What is the chemical symbol for water?",
+                options: ["Wa", "H2O", "O2H", "H2O2"],
+                correctAnswer: "H2O"
+            },
+            {
+                topic: "Science",
+                question: "Which of these is not a state of matter?",
+                options: ["Solid", "Liquid", "Gas", "Energy"],
+                correctAnswer: "Energy"
+            },
+            {
+                topic: "Technology",
+                question: "What does CPU stand for?",
+                options: ["Central Processing Unit", "Computer Personal Unit", "Central Processor Unit", "Central Program Unit"],
+                correctAnswer: "Central Processing Unit"
+            },
+            {
+                topic: "Technology",
+                question: "Which of these is not a programming language?",
+                options: ["Java", "Python", "HTML", "Photoshop"],
+                correctAnswer: "Photoshop"
+            },
+            {
+                topic: "Technology",
+                question: "What does 'WWW' stand for in a website browser?",
+                options: ["World Wide Web", "Web World Wide", "Wide World Web", "World Web Wide"],
+                correctAnswer: "World Wide Web"
+            },
+            {
+                topic: "Engineering",
+                question: "What simple machine is a seesaw an example of?",
+                options: ["Wheel and Axle", "Inclined Plane", "Pulley", "Lever"],
+                correctAnswer: "Lever"
+            },
+            {
+                topic: "Engineering",
+                question: "Which of these is not a type of bridge?",
+                options: ["Suspension", "Arch", "Truss", "Elevated"],
+                correctAnswer: "Elevated"
+            },
+            {
+                topic: "Engineering",
+                question: "What is the process of converting raw materials into useful products?",
+                options: ["Construction", "Manufacturing", "Recycling", "Designing"],
+                correctAnswer: "Manufacturing"
+            }
+        ];
+
+        let currentQuestionIndex = -1;
+        let score = 0;
+        let totalQuestions = 0;
+        let selectedAnswer = null;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('topic').textContent = question.topic;
+            document.getElementById('question').textContent = question.question;
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            let shuffledOptions = [...question.options];
+            shuffleArray(shuffledOptions);
+            
+            shuffledOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                button.onclick = () => selectOption(option);
+                optionsContainer.appendChild(button);
+            });
+            selectedAnswer = null;
+        }
+
+        function selectOption(answer) {
+            selectedAnswer = answer;
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                if (option.textContent === answer) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+            displayQuestion();
+        }
+
+        function checkAnswer() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            if (selectedAnswer === correctAnswer) {
+                alert('Correct answer!');
+                score++;
+            } else {
+                alert('Incorrect. The correct answer is ' + correctAnswer);
+            }
+            totalQuestions++;
+            updateScoreBanner();
+        }
+
+        function updateScoreBanner() {
+            const scoreBanner = document.getElementById('scoreBanner');
+            scoreBanner.textContent = `Score: ${score} / ${totalQuestions}`;
+        }
+
+        // Load the first question when the page loads
+        nextQuestion();
+    </script>
+</body>
+</html>
