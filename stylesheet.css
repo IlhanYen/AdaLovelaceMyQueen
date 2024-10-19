@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
 
+html {
+    height:100%;
+}
+
 body {
     background-image: linear-gradient(180deg, #69bcf4, white);
     font-family: "Joti One", sans-serif;
@@ -56,6 +60,11 @@ body {
     background-color: #e9e9e9;
 }
 
+.option.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
 #question {
     font-size: 50px;
     text-align: center;
@@ -91,4 +100,12 @@ canvas {
     padding: 0;
     margin: auto;
     display: block;
+}
+
+#scoreBanner {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 1rem;
 }
