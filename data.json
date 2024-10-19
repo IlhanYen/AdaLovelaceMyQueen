@@ -1,24 +1,134 @@
 [
   {
-    "Question": "What is the capital of France?",
-    "Answer": "Paris",
-    "Type": "Natural Sciences",
-    "AnsweredFlag": false,
-    "PossibleAnswers": [
-      "Nicosia",
-      "London",
-      "Berlin"
-    ]
-  },
-  {
-    "Question": "What is 2 + 2?",
-    "Answer": "4",
+    "Question": "What is 7 x 8?",
+    "Answer": "56",
     "Type": "Math",
     "AnsweredFlag": false,
     "PossibleAnswers": [
-      "3",
-      "6",
-      "5"
+      "54",
+      "58",
+      "60"
+    ]
+  },
+  {
+    "Question": "What is the sum of angles in a triangle?",
+    "Answer": "180 degrees",
+    "Type": "Math",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "90 degrees",
+      "270 degrees",
+      "360 degrees"
+    ]
+  },
+  {
+    "Question": "What is 25% of 80?",
+    "Answer": "20",
+    "Type": "Math",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "15",
+      "25",
+      "30"
+    ]
+  },
+  {
+    "Question": "What is the closest planet to the Sun?",
+    "Answer": "Mercury",
+    "Type": "Science",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Venus",
+      "Earth",
+      "Mars"
+    ]
+  },
+  {
+    "Question": "What is the chemical symbol for water?",
+    "Answer": "H2O",
+    "Type": "Science",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Wa",
+      "O2H",
+      "H2O2"
+    ]
+  },
+  {
+    "Question": "Which of these is not a state of matter?",
+    "Answer": "Energy",
+    "Type": "Science",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Solid",
+      "Liquid",
+      "Gas"
+    ]
+  },
+  {
+    "Question": "What does CPU stand for?",
+    "Answer": "Central Processing Unit",
+    "Type": "Technology",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Computer Personal Unit",
+      "Central Processor Unit",
+      "Central Program Unit"
+    ]
+  },
+  {
+    "Question": "Which of these is not a programming language?",
+    "Answer": "Photoshop",
+    "Type": "Technology",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Java",
+      "Python",
+      "HTML"
+    ]
+  },
+  {
+    "Question": "What does 'WWW' stand for in a website browser?",
+    "Answer": "World Wide Web",
+    "Type": "Technology",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Web World Wide",
+      "Wide World Web",
+      "World Web Wide"
+    ]
+  },
+  {
+    "Question": "What simple machine is a seesaw an example of?",
+    "Answer": "Lever",
+    "Type": "Engineering",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Wheel and Axle",
+      "Inclined Plane",
+      "Pulley"
+    ]
+  },
+  {
+    "Question": "Which of these is not a type of bridge?",
+    "Answer": "Elevated",
+    "Type": "Engineering",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Suspension",
+      "Arch",
+      "Truss"
+    ]
+  },
+  {
+    "Question": "What is the process of converting raw materials into useful products?",
+    "Answer": "Manufacturing",
+    "Type": "Engineering",
+    "AnsweredFlag": false,
+    "PossibleAnswers": [
+      "Construction",
+      "Recycling",
+      "Designing"
     ]
   }
 ]
