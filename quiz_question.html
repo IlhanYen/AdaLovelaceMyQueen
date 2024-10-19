@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css"/>
     <title>STEM Quiz Questions</title>
     <style>
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -77,18 +77,18 @@
             padding: 10px;
             border-radius: 5px;
             margin-top: 1rem;
-        }
+        } */
     </style>
 </head>
 <body>
-    <div class="container">
+    <div id="title-banner">
         <div id="topic"></div>
         <div id="question"></div>
-        <div class="options" id="options"></div>
-        <button id="submitBtn">Submit</button>
-        <button id="nextBtn" style="display:none;">Next Question</button>
-        <div id="scoreBanner" style="display:none;"></div>
     </div>
+    <div class="options" id="options"></div>
+    <button id="submitBtn" class="button">Submit</button>
+    <button id="nextBtn" class="button" style="display:none;">Next Question</button>
+    <div id="scoreBanner" style="display:none;"></div>
 
     <script>
         const questions = [
@@ -153,7 +153,7 @@
                 button.addEventListener("click", () => selectOption(index));
                 optionsElement.appendChild(button);
             });
-            submitBtn.style.display = "inline-block";
+            submitBtn.style.display = "block";
             nextBtn.style.display = "none";
             selectedOption = null;
         }
@@ -173,7 +173,7 @@
             options[selectedOption].style.backgroundColor = correct ? "#4CAF50" : "#f44336";
             options[questions[currentQuestion].correctAnswer].style.backgroundColor = "#4CAF50";
             submitBtn.style.display = "none";
-            nextBtn.style.display = "inline-block";
+            nextBtn.style.display = "block";
             updateScore();
         }
 
@@ -197,7 +197,8 @@
             optionsElement.innerHTML = "";
             submitBtn.style.display = "none";
             nextBtn.style.display = "none";
-            updateScore();
+            scoreBanner.textContent = `Score: ${score}/${questions.length}`;
+            scoreBanner.style.display = "block";
         }
 
         submitBtn.addEventListener("click", submitAnswer);
