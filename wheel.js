@@ -5,8 +5,8 @@ var allQuestions = readUnanswered(filePath)
 //declaring possible options    
 var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
 
-for (let i = 0; i < allQuestions.length();i++){
-    if ((allQuestions[i].Type == options[i]).length() <= 0) { 
+for (let i = 0; i < allQuestions.length;i++){
+    if ((allQuestions[i].Type == options[i])) { 
         options.splice(options.indexOf(options[i]),1)
     }
 }
@@ -162,20 +162,21 @@ spin();
 var availableQuestions = []
 
 for (let i = 0; i < allQuestions.length();i++){
-    if (options.include(allQuestions[i].Type))
-    availableQuestions.concat(allQuestions.question)
+    if (options.includes(allQuestions[i].Type))
+    availableQuestions.concat(allQuestions[i].question)
 }
 
-var question = availableQuestions.random()
+var question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
 
 var allAnswers = [] 
 
 var correctIndex
 
-for (let i = 0;i < allQuestions.length();i++){
+for (let i = 0;i < allQuestions.length;i++){
     if (allQuestions[i].Question == question){
         (allAnswers.concat(Answer)).concat(PossibleAnswers)
         correctIndex = allAnswers.indexOf(allQuestions[i].Answer)
+        updateAnsweredFlag(filePath, allQuestions[i].Question)
     }
 }
 
@@ -197,5 +198,3 @@ function shuffle(array) {
     }
   }
 
-
-module.exports = {shuffledAnswers, correctIndex}
