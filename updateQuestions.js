@@ -106,4 +106,4 @@ unansweredQuestions = readUnanswered(filePath)
 
 // Program start should call resetUnansweredFlags() and resetScore()
 
-module.exports = { readUnanswered, resetUnansweredFlags,updateAnsweredFlag };
+export { readUnanswered, resetUnansweredFlags,updateAnsweredFlag };
