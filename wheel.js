@@ -1,12 +1,12 @@
-const {readUnanswered, updateAnsweredFlag, filePath} = require("")
+const {readUnanswered, updateAnsweredFlag, filePath} = require('./updateQuestions')
 
-var possibleQuestions = readUnanswered(filePath)
+var allQuestions = readUnanswered(filePath)
 
 //declaring possible options    
 var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
 
-for (let i = 0; i < possibleQuestions.length();i++){
-    if ((possibleQuestions[i].Type == options[i]).length() <= 0) { 
+for (let i = 0; i < allQuestions.length();i++){
+    if ((allQuestions[i].Type == options[i]).length() <= 0) { 
         options.splice(options.indexOf(options[i]),1)
     }
 }
@@ -157,4 +157,45 @@ return b+c*(tc + -3*ts + 3*t);
 
 drawRouletteWheel();    
 spin();
+
+
+var availableQuestions = []
+
+for (let i = 0; i < allQuestions.length();i++){
+    if (options.include(allQuestions[i].Type))
+    availableQuestions.concat(allQuestions.question)
+}
+
+var question = availableQuestions.random()
+
+var allAnswers = [] 
+
+var correctIndex
+
+for (let i = 0;i < allQuestions.length();i++){
+    if (allQuestions[i].Question == question){
+        (allAnswers.concat(Answer)).concat(PossibleAnswers)
+        correctIndex = allAnswers.indexOf(allQuestions[i].Answer)
+    }
+}
+
+var shuffledAnswers = shuffle(allAnswers)
   
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
+
+
+module.exports = {shuffledAnswers, correctIndex}
