@@ -62,3 +62,5 @@ function resetScore() {
         console.log('Score has been reset to 0.');
     });
 }
+
+module.exports = { addToStoreJSON, resetScore };

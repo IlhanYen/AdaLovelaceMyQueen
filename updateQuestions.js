@@ -96,7 +96,7 @@ function updateAnsweredFlag(filePath, questionToUpdate) {
 }
 
 // Example usage:
-const filePath = './data.json'; // Path to yo// ur JSON file
+const filePath = './data.json';
 unansweredQuestions = readUnanswered(filePath)
 
 //wheel(unansweredQuestions)
@@ -105,3 +105,5 @@ unansweredQuestions = readUnanswered(filePath)
 // and Multiple Choice calls addToStoreJSON(p), where p is the number of points gained / lost
 
 // Program start should call resetUnansweredFlags() and resetScore()
+
+module.exports = { readUnanswered, resetUnansweredFlags,updateAnsweredFlag };
