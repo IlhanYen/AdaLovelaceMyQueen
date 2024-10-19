@@ -109,7 +109,7 @@ rotateWheel();
 }
 
 
-// function for the actual roatation of the wheel
+// function for the actual rotation of the wheel
 function rotateWheel() {
 spinTime += 30;
 if(spinTime >= spinTimeTotal) {
