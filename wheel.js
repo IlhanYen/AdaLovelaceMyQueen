@@ -5,12 +5,18 @@ var allQuestions = readUnanswered(filePath)
 //declaring possible options    
 var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
 
-for (let i = 0; i < allQuestions.length;i++){
-    if ((allQuestions[i].Type == options[i])) { 
+for (let i = 0; i < options.length;i++){
+    var found = false;
+    for (let j = 0;j<allQuestions.length;j++){
+        if ((allQuestions[j].Type == options[i])) { 
+            found = true;    
+        }
+        
+    }
+    if (found == false){
         options.splice(options.indexOf(options[i]),1)
     }
 }
-
 
 
 //declaring start angle and the size of the arcs of the circle.
