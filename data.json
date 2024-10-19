@@ -1,0 +1,16 @@
+[
+  {
+    "Question": "What is the capital of France?",
+    "Answer": "Paris",
+    "Type": "Natural Sciences",
+    "AnsweredFlag": true,
+    "PossibleAnswers": ["Nicosia", "London", "Berlin"]
+  },
+  {
+    "Question": "What is 2 + 2?",
+    "Answer": "4",
+    "Type": "Math",
+    "AnsweredFlag": false,
+    "PossibleAnswers": ["3", "6", "5"]
+  }
+]
