@@ -1,3 +1,15 @@
+import '/getQuestions.js'
+
+var possibleQuestions = readUnanswered(filePath)
+
+
+
+for (let i = 0; i < possibleQuestions.length();i++){
+    if ((possibleQuestions[i].Type == "Maths").length() <= 0) { 
+        
+    }
+}
+
 //declaring possible options    
 var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
 
