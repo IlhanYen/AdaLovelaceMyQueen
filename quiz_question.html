@@ -72,6 +72,14 @@
         button:hover {
             background-color: #45a049;
         }
+        #scoreBanner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +91,7 @@
         <input type="text" id="teacherInput" placeholder="A, B, C, or D" maxlength="1">
         <button onclick="checkAnswer()">Submit Answer</button>
         <button onclick="nextQuestion()">Next Question</button>
+        <div id="scoreBanner">Score: 0 / 0</div>
     </div>
 
     <script>
@@ -162,6 +171,8 @@
         ];
 
         let currentQuestionIndex = -1;
+        let score = 0;
+        let totalQuestions = 0;
 
         function displayQuestion() {
             const question = questions[currentQuestionIndex];
@@ -188,9 +199,17 @@
             const correctAnswer = questions[currentQuestionIndex].correctAnswer;
             if (teacherInput === correctAnswer) {
                 alert('Correct answer!');
+                score++;
             } else {
                 alert('Incorrect. The correct answer is ' + correctAnswer);
             }
+            totalQuestions++;
+            updateScoreBanner();
+        }
+
+        function updateScoreBanner() {
+            const scoreBanner = document.getElementById('scoreBanner');
+            scoreBanner.textContent = `Score: ${score} / ${totalQuestions}`;
         }
 
         // Load the first question when the page loads
@@ -198,4 +217,3 @@
     </script>
 </body>
 </html>
-  
