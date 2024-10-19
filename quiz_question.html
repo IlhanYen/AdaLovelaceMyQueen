@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM Quiz Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        #question, #topic {
+            margin-bottom: 1rem;
+        }
+        #question {
+            font-size: 20px;
+        }
+        #topic {
+            font-size: 18px;
+            color: #666;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .option {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            width: 80%;
+            text-align: left;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #d0d0d0;
+        }
+        #teacherInput {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            width: 50px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #scoreBanner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STEM Quiz</h1>
+        <div id="topic"></div>
+        <div id="question"></div>
+        <div class="options" id="options"></div>
+        <input type="text" id="teacherInput" placeholder="A, B, C, or D" maxlength="1">
+        <button onclick="checkAnswer()">Submit Answer</button>
+        <button onclick="nextQuestion()">Next Question</button>
+        <div id="scoreBanner">Score: 0 / 0</div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                topic: "Math",
+                question: "What is 7 x 8?",
+                options: ["A) 54", "B) 56", "C) 58", "D) 60"],
+                correctAnswer: "B"
+            },
+            {
+                topic: "Math",
+                question: "What is the sum of angles in a triangle?",
+                options: ["A) 90 degrees", "B) 180 degrees", "C) 270 degrees", "D) 360 degrees"],
+                correctAnswer: "B"
+            },
+            {
+                topic: "Math",
+                question: "What is 25% of 80?",
+                options: ["A) 15", "B) 20", "C) 25", "D) 30"],
+                correctAnswer: "B"
+            },
+            {
+                topic: "Science",
+                question: "What is the closest planet to the Sun?",
+                options: ["A) Venus", "B) Earth", "C) Mercury", "D) Mars"],
+                correctAnswer: "C"
+            },
+            {
+                topic: "Science",
+                question: "What is the chemical symbol for water?",
+                options: ["A) Wa", "B) H2O", "C) O2H", "D) H2O2"],
+                correctAnswer: "B"
+            },
+            {
+                topic: "Science",
+                question: "Which of these is not a state of matter?",
+                options: ["A) Solid", "B) Liquid", "C) Gas", "D) Energy"],
+                correctAnswer: "D"
+            },
+            {
+                topic: "Technology",
+                question: "What does CPU stand for?",
+                options: ["A) Central Processing Unit", "B) Computer Personal Unit", "C) Central Processor Unit", "D) Central Program Unit"],
+                correctAnswer: "A"
+            },
+            {
+                topic: "Technology",
+                question: "Which of these is not a programming language?",
+                options: ["A) Java", "B) Python", "C) HTML", "D) Photoshop"],
+                correctAnswer: "D"
+            },
+            {
+                topic: "Technology",
+                question: "What does 'WWW' stand for in a website browser?",
+                options: ["A) World Wide Web", "B) Web World Wide", "C) Wide World Web", "D) World Web Wide"],
+                correctAnswer: "A"
+            },
+            {
+                topic: "Engineering",
+                question: "What simple machine is a seesaw an example of?",
+                options: ["A) Wheel and Axle", "B) Inclined Plane", "C) Pulley", "D) Lever"],
+                correctAnswer: "D"
+            },
+            {
+                topic: "Engineering",
+                question: "Which of these is not a type of bridge?",
+                options: ["A) Suspension", "B) Arch", "C) Truss", "D) Elevated"],
+                correctAnswer: "D"
+            },
+            {
+                topic: "Engineering",
+                question: "What is the process of converting raw materials into useful products?",
+                options: ["A) Construction", "B) Manufacturing", "C) Recycling", "D) Designing"],
+                correctAnswer: "B"
+            }
+        ];
+
+        let currentQuestionIndex = -1;
+        let score = 0;
+        let totalQuestions = 0;
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('topic').textContent = question.topic;
+            document.getElementById('question').textContent = question.question;
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+            displayQuestion();
+            document.getElementById('teacherInput').value = '';
+        }
+
+        function checkAnswer() {
+            const teacherInput = document.getElementById('teacherInput').value.toUpperCase();
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            if (teacherInput === correctAnswer) {
+                alert('Correct answer!');
+                score++;
+            } else {
+                alert('Incorrect. The correct answer is ' + correctAnswer);
+            }
+            totalQuestions++;
+            updateScoreBanner();
+        }
+
+        function updateScoreBanner() {
+            const scoreBanner = document.getElementById('scoreBanner');
+            scoreBanner.textContent = `Score: ${score} / ${totalQuestions}`;
+        }
+
+        // Load the first question when the page loads
+        nextQuestion();
+    </script>
+</body>
+</html>
