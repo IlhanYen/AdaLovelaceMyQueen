@@ -1,7 +1,6 @@
-import '/getQuestions.js'
+const {readUnanswered, updateAnsweredFlag, filePath} = require("")
 
 var possibleQuestions = readUnanswered(filePath)
-
 
 //declaring possible options    
 var options = ["Maths", "Science", "Technology", "Engineering", "Brainrot"];
