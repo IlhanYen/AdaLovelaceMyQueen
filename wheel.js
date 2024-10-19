@@ -1,4 +1,4 @@
-const {readUnanswered, updateAnsweredFlag, filePath} = require('./updateQuestions')
+import {readUnanswered, updateAnsweredFlag, filePath} from './updateQuestions'
 
 var allQuestions = readUnanswered(filePath)
 
