@@ -57,7 +57,7 @@ if (canvas.getContext) {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
 
-    ctx.font = 'bold 25px Helvetica, Arial';
+    ctx.font = 'bold 25px Joti One';
 
     for(var i = 0; i < options.length; i++) {
     var angle = startAngle + i * arc;
@@ -67,14 +67,14 @@ if (canvas.getContext) {
     ctx.beginPath();
     ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
     ctx.arc(250, 250, insideRadius, angle + arc, angle, true);
-    ctx.stroke();
+    // ctx.stroke();
     ctx.fill();
 
     ctx.save();
     ctx.shadowOffsetX = -1;
     ctx.shadowOffsetY = -1;
     ctx.shadowBlur    = 0;
-    ctx.shadowColor   = "rgb(220,220,220)";
+    // ctx.shadowColor   = "rgb(220,220,220)";
     ctx.fillStyle = "black";
     ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
                     250 + Math.sin(angle + arc / 2) * textRadius);
@@ -129,7 +129,7 @@ var degrees = startAngle * 180 / Math.PI + 90;
 var arcd = arc * 180 / Math.PI;
 var index = Math.floor((360 - degrees % 360) / arcd);
 ctx.save();
-ctx.font = 'bold 30px Helvetica, Arial';
+ctx.font = 'bold 30px Joti One';
 var result = options[index]
 
 ctx.fillText(result, 250 - ctx.measureText(result).width / 2, 250 + 10);
@@ -144,4 +144,5 @@ return b+c*(tc + -3*ts + 3*t);
 }
 
 drawRouletteWheel();    
+spin();
   
