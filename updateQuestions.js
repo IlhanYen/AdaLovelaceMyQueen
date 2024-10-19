@@ -22,7 +22,7 @@ function readUnanswered(filePath) {
     }
 }
 
-function resetUnansweredFlags(filepath) {
+async function resetUnansweredFlags(filepath) {
     // Read the JSON file
     fs.readFile(filepath, 'utf8', (err, data) => {
         if (err) {

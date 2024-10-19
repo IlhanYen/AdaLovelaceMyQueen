@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Adds a given integer to the integer stored in the 'value' key of the JSON file named 'store.json'.
+ * Adds a given integer to the integer stored in the 'value' key of the JSON file named 'score.json'.
  * @param {number} numberToAdd - The integer to be added to the stored integer.
  */
 function addToStoreJSON(numberToAdd) {
@@ -63,4 +63,35 @@ function resetScore() {
     });
 }
 
-module.exports = { addToStoreJSON, resetScore };
+
+/**
+ * Gets the current score stored in the 'score.json' file.
+ * @returns {number|null} The current score, or null if there's an error.
+ */
+function getScore() {
+    const filePath = path.join(__dirname, 'score.json');
+
+    try {
+        // Read the current value from the file
+        const data = fs.readFileSync(filePath, 'utf8');
+
+        // Parse the JSON data
+        const jsonData = JSON.parse(data);
+
+        // Get the stored number
+        const storedNumber = jsonData.value;
+
+        // Validate that storedNumber is a number
+        if (typeof storedNumber === 'number') {
+            return storedNumber;
+        } else {
+            console.error('The value in the JSON file is not a valid number.');
+            return null; // Return null if the value is not a valid number
+        }
+    } catch (err) {
+        console.error('Error reading or parsing the file:', err);
+        return null; // Return null if there is an error
+    }
+}
+
+module.exports = { addToStoreJSON, resetScore, getScore };
