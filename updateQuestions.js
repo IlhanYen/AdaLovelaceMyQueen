@@ -99,6 +99,6 @@ unansweredQuestions = readUnanswered(filePath)
 //wheel(unansweredQuestions)
 
 // Wheel should call: updateAnsweredFlag(filePath, n), where n index of the question from 0,
-// and addToStoreJSON(p), where p is the number of points gained / lost
+// and Multiple Choice calls addToStoreJSON(p), where p is the number of points gained / lost
 
 // Program start should call resetUnansweredFlags() and resetScore()
