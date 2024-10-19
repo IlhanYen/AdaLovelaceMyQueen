@@ -53,10 +53,9 @@
         .option:hover {
             background-color: #d0d0d0;
         }
-        #teacherInput {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            width: 50px;
+        .option.selected {
+            background-color: #4CAF50;
+            color: white;
         }
         button {
             font-size: 18px;
@@ -88,7 +87,6 @@
         <div id="topic"></div>
         <div id="question"></div>
         <div class="options" id="options"></div>
-        <input type="text" id="teacherInput" placeholder="A, B, C, or D" maxlength="1">
         <button onclick="checkAnswer()">Submit Answer</button>
         <button onclick="nextQuestion()">Next Question</button>
         <div id="scoreBanner">Score: 0 / 0</div>
@@ -173,6 +171,7 @@
         let currentQuestionIndex = -1;
         let score = 0;
         let totalQuestions = 0;
+        let selectedAnswer = null;
 
         function displayQuestion() {
             const question = questions[currentQuestionIndex];
@@ -184,20 +183,35 @@
                 const button = document.createElement('button');
                 button.className = 'option';
                 button.textContent = option;
+                button.onclick = () => selectOption(option.charAt(0));
                 optionsContainer.appendChild(button);
+            });
+            selectedAnswer = null;
+        }
+
+        function selectOption(answer) {
+            selectedAnswer = answer;
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                if (option.textContent.charAt(0) === answer) {
+                    option.classList.add('selected');
+                }
             });
         }
 
         function nextQuestion() {
             currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
             displayQuestion();
-            document.getElementById('teacherInput').value = '';
         }
 
         function checkAnswer() {
-            const teacherInput = document.getElementById('teacherInput').value.toUpperCase();
+            if (selectedAnswer === null) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
             const correctAnswer = questions[currentQuestionIndex].correctAnswer;
-            if (teacherInput === correctAnswer) {
+            if (selectedAnswer === correctAnswer) {
                 alert('Correct answer!');
                 score++;
             } else {
