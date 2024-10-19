@@ -204,3 +204,4 @@ function shuffle(array) {
     }
   }
 
+export {shuffledAnswers, correctIndex}
